@@ -349,7 +349,7 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         defaults = {
-          file_ignore_patterns = { 'node_modules' },
+          file_ignore_patterns = { 'node_modules', 'package-lock.json', '.git' },
           mappings = {
             i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           },
