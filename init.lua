@@ -196,7 +196,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Plugin keymaps
-vim.keymap.set('n', '<leader>p', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -355,7 +355,7 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         defaults = {
-          file_ignore_patterns = { 'node_modules', 'package-lock.json', '.git' },
+          file_ignore_patterns = { 'node_modules', 'package-lock.json' },
           mappings = {
             i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           },
