@@ -158,9 +158,9 @@ vim.opt.scrolloff = 10
 --  See `:help vim.keymap.set()`
 --  Escape insert mode with kj
 vim.keymap.set('i', 'kj', '<Esc>')
-
--- TODO: comment selection with space + /
-vim.keymap.set('v', '<leader>c', vim.print 'COMMENT!', { desc = '[C]omment Visual Selection' })
+-- Go to previous buffer
+vim.keymap.set('n', '<leader>bp', ':bprevious<cr>', { desc = 'Go to [P]revious [B]uffer' })
+vim.keymap.set('n', '<leader>bn', ':bnext<cr>', { desc = 'Go to [N]next [B]uffer' })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
