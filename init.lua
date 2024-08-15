@@ -160,7 +160,10 @@ vim.opt.scrolloff = 10
 vim.keymap.set('i', 'kj', '<Esc>')
 -- Go to previous buffer
 vim.keymap.set('n', '<leader>bp', ':bprevious<cr>', { desc = 'Go to [P]revious [B]uffer' })
+-- Go to next buffer
 vim.keymap.set('n', '<leader>bn', ':bnext<cr>', { desc = 'Go to [N]next [B]uffer' })
+-- Save buffer
+vim.keymap.set('n', '<leader>bs', ':w<cr>', { desc = '[S]ave [B]uffer' })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
