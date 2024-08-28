@@ -200,11 +200,11 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Plugin keymaps
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-vim.keymap.set('i', '<C-y>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false,
-})
-vim.g.copilot_no_tab_map = true
+-- vim.keymap.set('i', '<C-y>', 'copilot#Accept("\\<CR>")', {
+--   expr = true,
+--   replace_keycodes = false,
+-- })
+-- vim.g.copilot_no_tab_map = true
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
