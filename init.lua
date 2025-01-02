@@ -657,7 +657,9 @@ require('lazy').setup({
         -- is found.
         go = { 'goimports', 'gofmt' },
         javascript = { { 'prettier' } },
+        javascriptreact = { { 'prettier' } },
         typescript = { { 'prettier' } },
+        typescriptreact = { { 'prettier' } },
         jsonc = { { 'prettier' } },
       },
     },
