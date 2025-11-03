@@ -113,6 +113,26 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
+--
+--
+local function paste()
+  return {
+    vim.split(vim.fn.getreg '', '\n'),
+    vim.fn.getregtype '',
+  }
+end
+
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+    ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+  },
+  paste = {
+    ['+'] = paste,
+    ['*'] = paste,
+  },
+}
 vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
@@ -205,6 +225,8 @@ vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 --   replace_keycodes = false,
 -- })
 -- vim.g.copilot_no_tab_map = true
+-- Set Copilot version to use Node 22
+vim.g.copilot_node_command = '~/.nvm/versions/node/v22.14.0/bin/node'
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
