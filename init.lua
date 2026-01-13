@@ -220,13 +220,34 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Plugin keymaps
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
--- vim.keymap.set('i', '<C-y>', 'copilot#Accept("\\<CR>")', {
---   expr = true,
---   replace_keycodes = false,
--- })
+
 -- vim.g.copilot_no_tab_map = true
 -- Set Copilot version to use Node 22
 vim.g.copilot_node_command = '~/.nvm/versions/node/v22.14.0/bin/node'
+
+vim.keymap.set('n', '<leader>cc', function()
+  require('CopilotChat').open {
+    sticky = { '#buffer:active' },
+  }
+end, { desc = '[C]opilotChat - [C]hat for current buffer' })
+
+-- Visual-mode: explain selection
+vim.keymap.set('v', '<leader>ce', function()
+  require('CopilotChat').open {
+    prompt = 'Explain',
+    selection = require('CopilotChat.select').visual,
+    sticky = { '#selection' },
+  }
+end, { desc = '[C]opilotChat - [E]xplain selection' })
+
+-- Normal-mode: start a brand new chat
+vim.keymap.set('n', '<leader>cn', function()
+  local chat = require 'CopilotChat'
+  chat.reset() -- clear previous conversation state [web:4]
+  chat.open { -- open a fresh chat window [web:4]
+    -- no sticky context here so it's truly "new"
+  }
+end, { desc = '[C]opilotChat - [N]ew chat' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -538,7 +559,7 @@ require('lazy').setup({
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          -- map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
@@ -819,6 +840,16 @@ require('lazy').setup({
     'stevearc/oil.nvim',
     opts = {},
     dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { 'nvim-lua/plenary.nvim', branch = 'master' },
+    },
+    build = 'make tiktoken',
+    opts = {
+      -- See Configuration section for options
+    },
   },
   {
     'github/copilot.vim',
